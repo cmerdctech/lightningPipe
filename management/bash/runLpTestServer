@@ -2,13 +2,13 @@
 
 if [ "$serverContext" == "lpdemo" ]; then
 
-echo -e "\n\n===== Stopping lpDemo ==================== \n";
+echo -e "\n\n===== Stopping LightningPipe Server ==================== \n";
 forever stop $lightningPipeDir/server.js
 
 fi
 
 
-echo -e "\n\n===== Starting lpDemo ==================== \n";
+echo -e "\n\n===== Starting LightningPipe Server ==================== \n";
 
 nodemon -w $lpProjectBase $lightningPipeDir/server.js
 

@@ -54,20 +54,20 @@ if [ ! -d $testLinkDir ]; then
 mkdir $testLinkDir
 fi
 
-if [ -e "$homeDir/testLinkpoint/lightningPipeHome" ]; then
-	rm $homeDir/testLinkpoint/lightningPipeHome;
+if [ -e "$testLinkDir/lightningPipeHome" ]; then
+	rm $testLinkDir/lightningPipeHome;
 fi
-if [ -e "$homeDir/testLinkpoint/lpTestDataSource" ]; then
-	rm $homeDir/testLinkpoint/lpTestDataSource;
+if [ -e "$testLinkDir/lpTestDataSource" ]; then
+	rm $testLinkDir/lpTestDataSource;
 fi
-if [ -e "$homeDir/testLinkpoint/lpTestDataDest" ]; then
-	rm $homeDir/testLinkpoint/lpTestDataDest;
+if [ -e "$testLinkDir/lpTestDataDest" ]; then
+	rm $testLinkDir/lpTestDataDest;
 fi
 
-ln -s $lpProjectBase $homeDir/testLinkpoint/lightningPipeHome
+ln -s $lpProjectBase $testLinkDir/lightningPipeHome
 
-ln -s $homeDir/testLinkpoint/cloverleafHome/testDataFiles/ $homeDir/testLinkpoint/lpTestDataSource; #for use in json files
-ln -s $homeDir/testLinkpoint/cloverleafHome/testResults/ $homeDir/testLinkpoint/lpTestDataDest; #for use in json files
+ln -s $testLinkDir/cloverleafHome/testDataFiles/ $testLinkDir/lpTestDataSource; #for use in json files
+ln -s $testLinkDir/cloverleafHome/testResults/ $testLinkDir/lpTestDataDest; #for use in json files
 
 
 
