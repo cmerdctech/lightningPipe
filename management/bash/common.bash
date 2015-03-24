@@ -93,6 +93,7 @@ fi
 # === UTILITY AND NAVIGATION aliases ===========================================
 alias lprepo="cd $lpProjectBase/system; pwd; git status;";
 alias editlpscripts="edit $lpTestScriptsDir/common.bash"
+alias lpTestDir="cd $lpProjectBase/testData"
 
 alias lpdir="cd $lightningPipeDir; echo -e '\n'; ls -la; pwd;"
 
