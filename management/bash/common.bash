@@ -112,7 +112,7 @@ alias viewLog="cat $lpLoggingDir/lightningClover.log | bunyan | tail --lines=133
 
 fi
 
-alias tailLog="tail -f $lpLoggingDir/lightningClover.log | bunyan"
+alias tailLog="tail -f -n 20 $lpLoggingDir/lightningClover.log | bunyan"
 alias killLog="rm $lpLoggingDir/lightningClover.log"
 
 
