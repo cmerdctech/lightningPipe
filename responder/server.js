@@ -14,7 +14,7 @@ if (!lpBasePath) {
 var localEnvironment = require(lpBasePath + 'config/localEnvironment.js');
 global.localEnvironment = new localEnvironment({
 	appName: 'lightningpipe',
-	projectBasePath:lpBasePath
+	projectBasePath: lpBasePath
 });
 
 global.localEnvironment.log.info({
@@ -57,8 +57,10 @@ router.use(function(req, res, next) {
 	});
 
 	client.on('badAuth', function(info) {
-	
-		if (req.originalUrl=='/ping'){ next(); return; }
+
+		if (req.originalUrl == '/ping') {
+			next(); return;
+		}
 
 		var tmp = qtools.clone(req.headers);
 		delete tmp.password;
@@ -87,12 +89,12 @@ router.use(function(req, res, next) {
 //START ROUTING FUNCTION =======================================================
 
 
-var apiName="uff",
-	apiVersion='1.0';
+var apiName = "uff",
+	apiVersion = '1.0';
 
 router.get(new RegExp('/' + apiName + '/' + apiVersion + '/(.*)'), function(req, res, next) {
 	//closure: client
-	
+
 	apiDefinition = require("apiDefinition")
 	apiDefinition = new apiDefinition({
 		name: apiName,
@@ -111,20 +113,25 @@ router.get(new RegExp('/' + apiName + '/' + apiVersion + '/(.*)'), function(req,
 	};
 
 	global.localEnvironment.log.info({
-		source:'responder.server.js',
-		evidence:{
-			uriPath:executionPackage.uriPath,
-			clientName:executionPackage.clientProfile.identity.name,
-			dataSource:executionPackage.clientProfile.dataSourceAvailable.uff.serverProfile,
-			definitionName:executionPackage.clientProfile.dataSourceAvailable.uff.definitionName
+		source: 'responder.server.js',
+		evidence: {
+			uriPath: executionPackage.uriPath,
+			clientName: executionPackage.clientProfile.identity.name,
+			dataSource: executionPackage.clientProfile.dataSourceAvailable.uff.serverProfile,
+			definitionName: executionPackage.clientProfile.dataSourceAvailable.uff.definitionName
 		}
 	})
+
+	var suppressAdditionalOutputAfterError = false;
 
 	client.setApi(apiDefinition);
 	var sessionModel = new model(executionPackage);
 	sessionModel.on('gotData', function(result) {
 		result.meta = qtools.mergeMetaData(result.meta);
-		sender('', result);
+		if (!suppressAdditionalOutputAfterError) {
+			suppressAdditionalOutputAfterError = true;
+			sender('', result);
+		}
 	});
 
 	sessionModel.on('badData', function(result) {
@@ -162,4 +169,5 @@ router.post('/ping', function(req, res, next) {
 app.listen(config.port);
 
 qtools.message('Magic happens on port ' + config.port);
+
 
