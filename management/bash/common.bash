@@ -35,7 +35,7 @@ then
   echo -e "\nWARNING: $lpProjectBase/testData IS MISSING\n"
 fi
 
-if [ ! -e "$lpProjectBase/system/config" ]
+if [ ! -e "$lpProjectBase/config" ]
 then
   echo -e "\nWARNING: $lpProjectBase/config IS MISSING\n"
 fi
