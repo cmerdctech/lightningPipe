@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [$lpLoggingDir == ""]; then
+lpLoggingDir="/home/lpProd/testLinkpoint/lightningPipeHome/logFiles";
+fi
+
+if [$lightningPipeDir == ""]; then
+lightningPipeDir="/home/lpProd/testLinkpoint/lightningPipeHome/system/responder";
+fi
+
+echo -e "\n\n===== Stopping LightningPipe Server (if any) ==================== \n";
+
+forever stop $lightningPipeDir/server.js > /dev/null
+
+echo -e "\n\n===== Starting LightningPipe Server ==================== \n";
+
+forever start $lightningPipeDir/server.js -l $lpLoggingDir/foreverServer.log
+
+echo -e "\n\n========================================== \n";

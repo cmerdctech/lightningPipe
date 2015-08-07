@@ -1,12 +1,8 @@
 #!/bin/bash
 
-if [ "$serverContext" == "lpdemo" ]; then
 
-echo -e "\n\n===== Stopping LightningPipe Server ==================== \n";
-forever stop $lightningPipeDir/server.js
-
-fi
-
+echo -e "\n\n===== Stopping LightningPipe Server (if any) ==================== \n";
+forever stop $lightningPipeDir/server.js > /dev/null
 
 echo -e "\n\n===== Starting LightningPipe Server ==================== \n";
 
