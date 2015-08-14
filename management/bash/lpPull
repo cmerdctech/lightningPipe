@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# add -x to the shebang for debugging
+
+pushd $lpProjectBase/system > /dev/null
+
+git status;
+
+echo -e "PULLING =============\n\n";
+git pull
+echo -e "\n\nFINISHED =============";
+
+popd > /dev/null
+

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+echo -e "\n\nERROR: You must supply a commit message";
+exit;
+fi
+
+
+pushd $lpProjectBase/system > /dev/null
+
+git status;
+echo -e "\n\nADDING & COMMITTING =======\n\n";
+
+git add --all .
+
+git commit -m"$1"
+
+echo -e "\n\nPUSHING =======\n\n";
+git push
+echo -e "\n\nFINISHED =======\n\n";
+
+popd > /dev/null

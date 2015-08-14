@@ -7,7 +7,9 @@ TESTING COMMANDS\n\n\
 runLpTestServer - start LightningPipe server\n\
 pingLp - ping LP test server\n\
 curlm - acccess LP as mssql user\n\
-curlj - access LP as jmc user\n\\n\
+curlj - access LP as jmc user\n\\n\n\
+lpPush - git commit and push, requires message\n\\n\
+lpPull - git pull\n\\n\
 
 
 lpdir - cd to LP server code\n\

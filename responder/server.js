@@ -160,7 +160,8 @@ router.post('/ping', function(req, res, next) {
 	res.json({
 		status: 'hello from ping/post',
 		body: req.body,
-		query: req.query
+		query: req.query,
+		serverLocation:lpBasePath
 	});
 });
 
