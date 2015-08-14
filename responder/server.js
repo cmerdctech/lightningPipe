@@ -152,7 +152,8 @@ router.get('/ping', function(req, res, next) {
 		status: 'hello from ping/get',
 		body: req.body,
 		query: req.query,
-		client: client.profile()
+		client: client.profile(),
+		serverLocation:lpBasePath
 	});
 });
 
