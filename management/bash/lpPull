@@ -1,14 +1,31 @@
 #!/bin/bash
 
-# add -x to the shebang for debugging
 
-pushd $lpProjectBase/system > /dev/null
+nodeRepo=$lpProjectBase/node_modules;
+systemRepo=$lpProjectBase/system;
 
+
+echo -e "\n\n$nodeRepo ====================\n";
+pushd $nodeRepo > /dev/null
+pwd; 
 git status;
 
-echo -e "PULLING =============\n\n";
-git pull
-echo -e "\n\nFINISHED =============";
+echo -e "PULLING";
+git pull;
+
 
 popd > /dev/null
 
+
+
+echo -e "\n\n\n\n$systemRepo ====================\n";
+pushd $systemRepo > /dev/null
+git status;
+
+echo -e "PULLING";
+git pull;
+
+
+echo -e "\n\n\n\nDONE ====================\n\n";
+
+popd > /dev/null
