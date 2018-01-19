@@ -1,23 +1,24 @@
 #!/bin/bash
-echo "LIGHTNINGPIPE ALIASES ETC (editlpscripts)";
-
 export lpTestInfo="\
-----------------------------------\n\
-TESTING COMMANDS\n\n\
-runLpTestServer - start LightningPipe server\n\
-pingLp - ping LP test server\n\
-curlm - acccess LP as mssql user\n\
-curlj - access LP as jmc user\n\\n\n\
-lpPush - git commit and push, requires message\n\\n\
-lpPull - git pull\n\\n\
+----------------------------------
+Lightning Pipe
 
+runLpTestServer - start LightningPipe server
+lprepo - cd to lightning pipe code repository
 
-lpdir - cd to LP server code\n\
-lpInfo - repeat this information\n\n\
-viewLog - look at all log info\n\n\
-tailLog - look at recent log info\n\n\
-editlpscripts - edit this file\n\
-----------------------------------\n\
+pingLp - ping LP test server
+curlm - acccess LP as mssql user
+curlj - access LP as jmc usern
+
+lpPush - git commit and push, requires message
+lpPull - git pull
+
+lpdir - cd to LP server code
+lpInfo - repeat this information
+viewLog - look at all log info
+tailLog - look at recent log info
+editlpscripts - edit this file
+----------------------------------
 ";
 
 if [ ! -e "$lpProjectBase/logFiles" ]
@@ -46,9 +47,12 @@ fi
 echo -e "$lpTestInfo";
 alias lpInfo=' echo -e "$lpTestInfo"'
 
+
+
+
+
 export PATH=$PATH:"$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )": #include other executable scripts in this directory
 
-echo -e "\ncd lpProjectBase ======"; cd $lpProjectBase; pwd; #note: this is a synonym of lprepo, repo is different in some other projects
 
 # === symbolic link allows paths fixed in control files to be redirected for various test purposes ===
 
@@ -66,11 +70,14 @@ if [ -e "$testLinkDir/lpTestDataDest" ]; then
 	rm $testLinkDir/lpTestDataDest;
 fi
 
+
+echo -e "verifying test data directories..."
 ln -s $lpProjectBase $testLinkDir/lightningPipeHome
 
 ln -s $testLinkDir/cloverleafHome/testDataFiles/ $testLinkDir/lpTestDataSource; #for use in json files
 ln -s $testLinkDir/cloverleafHome/testResults/ $testLinkDir/lpTestDataDest; #for use in json files
 
+echo -e "...done"
 
 
 
@@ -116,6 +123,8 @@ fi
 
 alias tailLog="tail -f -n 20 $lpLoggingDir/lightningClover.log | bunyan"
 alias killLog="rm $lpLoggingDir/lightningClover.log"
+
+alias lprepo="cd $lpProjectBase/system";
 
 
 
