@@ -33,6 +33,17 @@ var apiDefinition;
 var client;
 
 var router = express.Router();
+
+var startTime;
+
+app.use((req, res, next)=>{
+
+console.log("req.path="+req.path);
+startTime=new Date();
+next();
+
+});
+
 app.use('/', router);
 
 //START AUTHENTICATION =======================================================
@@ -130,6 +141,9 @@ router.get(new RegExp('/' + apiName + '/' + apiVersion + '/(.*)'), function(req,
 		result.meta = qtools.mergeMetaData(result.meta);
 		if (!suppressAdditionalOutputAfterError) {
 			suppressAdditionalOutputAfterError = true;
+			
+			console.log("SENDING="+req.path+" / "+(new Date()-startTime)+" ms");
+			
 			sender('', result);
 		}
 	});
